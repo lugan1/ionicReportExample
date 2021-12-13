@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "ionicReportApp",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
