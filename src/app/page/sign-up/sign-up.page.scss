@@ -17,5 +17,17 @@
 
 #btn_signUp_submit{
   margin-left: 35%;
-  margin-top: 20%;
+  margin-top: 5%;
+}
+
+.input_error{
+  border-color: red;
+}
+
+.txt_error{
+  font-size: 10px;
+}
+
+.txt_error_container{
+  height: 21px;
 }

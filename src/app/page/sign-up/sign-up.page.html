@@ -11,17 +11,23 @@
   <ion-card>
     <ion-card-content>
 
-      <ion-grid [formGroup]="fg_signUp">
+      <ion-grid [formGroup]="fg_signUp" style="height: 455px">
+
         <section class="ion-align-items-center">
           <ion-label class="txt_signUp_subject" color="black" position="float">아이디</ion-label>
           <ion-row>
             <ion-col size="8" offset="0">
-              <ion-input type="text" formControlName="id"></ion-input>
+              <ion-input [ngClass]="{'input_error': fg_signUp.controls.id.dirty&& fg_signUp.controls.id?.invalid, '': id_duplicate_valid}" maxlength="20" type="text" formControlName="id"></ion-input>
             </ion-col>
             <ion-col size="3">
-              <ion-button>중복확인</ion-button>
+              <ion-button [disabled]="fg_signUp.controls['id'].value.length < 4" (click)="check_id_exists()">중복확인</ion-button>
             </ion-col>
           </ion-row>
+          <div class="txt_error_container">
+            <ion-text class="txt_error" *ngIf="id_duplicate_valid">사용 가능한 아이디 입니다.</ion-text>
+            <ion-text class="txt_error" *ngIf="fg_signUp.controls.id.errors?.minlength">최소 4자 이상 입력해야 됩니다.</ion-text>
+            <ion-text class="txt_error" *ngIf="fg_signUp.controls.id.errors?.required && fg_signUp.controls.id.dirty">필수 입력사항 입니다.</ion-text>
+          </div>
         </section>
 
 
@@ -31,18 +37,24 @@
           <ion-label class="txt_signUp_subject" color="black" position="float">패스워드</ion-label>
           <ion-row>
             <ion-col size="8" offset="0">
-              <ion-input type="text" formControlName="pw"></ion-input>
+              <ion-input [ngClass]="{'input_error': fg_signUp.controls.pw?.invalid }" type="password" placeholder="예시) asdf1234" formControlName="pw" maxlength="20"></ion-input>
             </ion-col>
           </ion-row>
+          <div class="txt_error_container">
+            <ion-text class="txt_error">최소 8 자 이상, 하나 이상의 문자와 하나의 숫자를 입력해주세요</ion-text>
+          </div>
         </section>
 
         <section class="ion-align-items-center">
           <ion-label class="txt_signUp_subject" color="black" position="float">패스워드 확인</ion-label>
           <ion-row>
             <ion-col size="8" offset="0">
-              <ion-input type="text" formControlName="pw_verify"></ion-input>
+              <ion-input type="password" formControlName="pw_verify" maxlength="20"></ion-input>
             </ion-col>
           </ion-row>
+          <div class="txt_error_container">
+            <ion-text class="txt_error">입력한 패스워드와 틀립니다.</ion-text>
+          </div>
         </section>
 
 
@@ -50,12 +62,17 @@
           <ion-label class="txt_signUp_subject" color="black" position="float">닉네임</ion-label>
           <ion-row>
             <ion-col size="8" offset="0">
-              <ion-input type="text" formControlName="name"></ion-input>
+              <ion-input [ngClass]="{'input_error': fg_signUp.controls.name.dirty &&fg_signUp.controls.name?.invalid, '': name_duplicate_valid}" maxlength="20" type="text" formControlName="name"></ion-input>
             </ion-col>
             <ion-col size="3">
-              <ion-button>중복확인</ion-button>
+              <ion-button [disabled]="fg_signUp.controls['name'].value.length < 4" (click)="check_name_exists()">중복확인</ion-button>
             </ion-col>
           </ion-row>
+          <div class="txt_error_container">
+            <ion-text class="txt_error" *ngIf="fg_signUp.controls.name.errors?.minlength">최소 4자 이상 입력해야 됩니다.</ion-text>
+            <ion-text class="txt_error" *ngIf="name_duplicate_valid">사용 가능한 닉네임입니다.</ion-text>
+            <ion-text class="txt_error" *ngIf="fg_signUp.controls.name.errors?.required && fg_signUp.controls.name.dirty">필수 입력사항 입니다.</ion-text>
+          </div>
         </section>
 
       </ion-grid>
