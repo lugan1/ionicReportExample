@@ -20,7 +20,7 @@
               <ion-input [ngClass]="{'input_error': fg_signUp.controls.id.dirty&& fg_signUp.controls.id?.invalid, '': id_duplicate_valid}" maxlength="20" type="text" formControlName="id"></ion-input>
             </ion-col>
             <ion-col size="3">
-              <ion-button [disabled]="fg_signUp.controls['id'].value.length < 4" (click)="check_id_exists()">중복확인</ion-button>
+              <ion-button [disabled]="fg_signUp.controls['id'].value.length < 4 || id_duplicate_valid" (click)="check_id_exists()">중복확인</ion-button>
             </ion-col>
           </ion-row>
           <div class="txt_error_container">
@@ -41,7 +41,7 @@
             </ion-col>
           </ion-row>
           <div class="txt_error_container">
-            <ion-text class="txt_error">최소 8 자 이상, 하나 이상의 문자와 하나의 숫자를 입력해주세요</ion-text>
+            <ion-text class="txt_error">하나 이상의 문자와 숫자를 포함해서 8자이상 입력해주세요</ion-text>
           </div>
         </section>
 
@@ -49,11 +49,11 @@
           <ion-label class="txt_signUp_subject" color="black" position="float">패스워드 확인</ion-label>
           <ion-row>
             <ion-col size="8" offset="0">
-              <ion-input type="password" formControlName="pw_verify" maxlength="20"></ion-input>
+              <ion-input [ngClass]="{'input_error':fg_signUp?.hasError('notSame') && fg_signUp.controls['pw_verify'].dirty}" type="password" formControlName="pw_verify" maxlength="20"></ion-input>
             </ion-col>
           </ion-row>
           <div class="txt_error_container">
-            <ion-text class="txt_error">입력한 패스워드와 틀립니다.</ion-text>
+            <ion-text *ngIf="fg_signUp.hasError('notSame') && fg_signUp.controls['pw_verify'].dirty" class="txt_error">입력한 패스워드와 틀립니다.</ion-text>
           </div>
         </section>
 
@@ -65,7 +65,7 @@
               <ion-input [ngClass]="{'input_error': fg_signUp.controls.name.dirty &&fg_signUp.controls.name?.invalid, '': name_duplicate_valid}" maxlength="20" type="text" formControlName="name"></ion-input>
             </ion-col>
             <ion-col size="3">
-              <ion-button [disabled]="fg_signUp.controls['name'].value.length < 4" (click)="check_name_exists()">중복확인</ion-button>
+              <ion-button [disabled]="fg_signUp.controls['name'].value.length < 4  || name_duplicate_valid" (click)="check_name_exists()">중복확인</ion-button>
             </ion-col>
           </ion-row>
           <div class="txt_error_container">
@@ -78,7 +78,7 @@
       </ion-grid>
 
       <section class="ion-align-items-center">
-        <ion-button id="btn_signUp_submit" (click)="open_submitAlert()">제출하기</ion-button>
+        <ion-button [disabled]="fg_signUp.invalid || (id_duplicate_valid == false) || (name_duplicate_valid==false)" id="btn_signUp_submit" (click)="open_submitAlert()">제출하기</ion-button>
       </section>
 
     </ion-card-content>

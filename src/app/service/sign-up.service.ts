@@ -11,8 +11,13 @@ export class SignUpService {
   constructor(private httpClient:HttpClient) { }
 
 
-  public Post_signUp(signUp:Request_SignUp):Observable<any>{
-    return this.httpClient.post<any>('http://localhost:8087/api/back/user/insertUser',signUp);
+  public Post_signUp(name:string, id:string, password:string):Observable<number>{
+    let req_signup:Request_SignUp = {
+      name : name,
+      id : id,
+      password : password
+    };
+    return this.httpClient.post<number>('http://localhost:8087/api/back/user/insertUser',req_signup);
   }
 
   public Get_existsId(id:string):Observable<any>{

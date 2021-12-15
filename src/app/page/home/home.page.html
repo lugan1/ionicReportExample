@@ -13,13 +13,13 @@
     <ion-label id="txt_loginTitle">LOGIN</ion-label>
   </div>
   <div id="container">
-    <ion-grid>
+    <ion-grid [formGroup]="fg_login">
       <ion-row id="form_id">
         <ion-col size="3" offset="0">
           <ion-label>ID</ion-label>
         </ion-col>
         <ion-col size="9" offset="0">
-          <ion-input class = "id_pw_input" type="text" placeholder="아이디를 입력해주세요."></ion-input>
+          <ion-input class = "id_pw_input" type="text" placeholder="아이디를 입력해주세요." formControlName="id"></ion-input>
         </ion-col>
       </ion-row>
 
@@ -29,13 +29,13 @@
           <ion-label>Password</ion-label>
         </ion-col>
         <ion-col size="9" offset="0">
-          <ion-input class = "id_pw_input" type="password" placeholder="비밀번호를 입력해주세요."></ion-input>
+          <ion-input class = "id_pw_input" type="password" placeholder="비밀번호를 입력해주세요." formControlName="password"></ion-input>
         </ion-col>
       </ion-row>
     </ion-grid>
 
     <section id="section_loginbtn">
-    <ion-button id="btn_login" expand="block">Login</ion-button>
+    <ion-button id="btn_login" expand="block" (click)="submit_login()">Login</ion-button>
   </section>
 
     <section id="section_signupbtn">
