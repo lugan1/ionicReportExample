@@ -1,6 +1,25 @@
+<ion-menu side="end" content-id="main">
+  <ion-header>
+    <ion-toolbar translucent>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+
+      <ion-item button="true" (click)="logoutButtonClick()">
+        <ion-icon name="log-out-outline"></ion-icon>
+        <ion-label style="margin-left: 5%">Logout</ion-label>
+      </ion-item>
+
+
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
 <ion-header>
 
-  <ion-toolbar>
+  <ion-toolbar formgr>
     <ion-buttons slot="secondary">
       <ion-button>
         <ion-icon slot="icon-only" name="person-circle"></ion-icon>
@@ -10,7 +29,7 @@
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="primary">
-      <ion-button color="secondary">
+      <ion-button color="secondary" (click)="open_slideMenu()">
         <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -19,7 +38,7 @@
 
 </ion-header>
 
-<ion-content>
+<ion-content id="main">
 
   <ion-list>
     <ion-item *ngFor="let board of boardList" [routerLink]="['/board-detail',board.idx]">

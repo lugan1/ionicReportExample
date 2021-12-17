@@ -21,9 +21,8 @@ export class AuthenticationService {
     return this.httpClient.post('http://localhost:8087/api/back/user/login',requst_Login)
   }
 
-  Get_Logout():Observable<any>{
-/*    return this.httpClient.get<string>('http://localhost:8087/api/back/user/logout')*/
-    return this.httpClient.get('http://localhost:8087/api/back/user/logout',{responseType:"text"})
+  Post_Logout():Observable<string>{
+    return this.httpClient.post('http://localhost:8087/api/back/user/logout',{},{responseType:"text"})
   }
 
 

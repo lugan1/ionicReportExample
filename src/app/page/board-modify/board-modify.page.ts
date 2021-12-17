@@ -53,6 +53,7 @@ export class BoardModifyPage implements OnInit {
               this.fg_board.controls['title'].value,
               this.fg_board.controls['content'].value).subscribe(
               data=>{
+                this.boardService.get_Board(this.board.idx)
                 this.router.navigate(['board-detail',this.board.idx])
               }
             )

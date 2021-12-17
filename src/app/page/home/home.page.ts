@@ -54,13 +54,4 @@ export class HomePage {
       )
   }
 
-  tsetSubmit_logout(){
-    this.authService.Get_Logout()
-      .subscribe(
-        data=>{
-
-        }
-      )
-  }
-
 }

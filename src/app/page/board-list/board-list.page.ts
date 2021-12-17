@@ -1,9 +1,11 @@
 import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {BoardService} from "../../service/board.service";
-import {IonInfiniteScroll} from "@ionic/angular";
+import {IonInfiniteScroll, MenuController} from "@ionic/angular";
 import {Board} from "../../model/board";
 import {BoardList} from "../../model/boardList";
 import {Router} from "@angular/router";
+import {AuthenticationService} from "../../service/authentication.service";
+import {TokenStorageService} from "../../service/token-storage-service";
 
 @Component({
   selector: 'app-board-list',
@@ -20,8 +22,35 @@ export class BoardListPage implements OnInit {
   page_limit : number = 10;
 
 
-  constructor(private boardService:BoardService, private router:Router) {
+  constructor(
+    private boardService:BoardService,
+    private menuController:MenuController,
+    private authService:AuthenticationService,
+    private router:Router,
+    private tokenStorageService:TokenStorageService) {
 
+  }
+
+  ngOnInit() {
+  }
+
+  logoutButtonClick(){
+    this.authService.Post_Logout().subscribe(
+      data=>{
+        this.tokenStorageService.logout();
+        //sessionStorage에 있는 값들을 전부 지운다.
+        this.router.navigate([''])
+        //메인 메뉴로 돌아간다.
+      }
+    )
+  }
+
+  open_slideMenu(){
+    this.menuController.open()
+  }
+
+
+  ionViewWillEnter(){
     this.boardService.get_BoardList(0,10).subscribe(
       data=>{
 
@@ -29,13 +58,6 @@ export class BoardListPage implements OnInit {
         this.boardList = data.items;
       }
     )
-  }
-
-  ngOnInit() {
-  }
-
-  test(){
-    console.log("clicked")
   }
 
   move_boardDetail(idx:number){
