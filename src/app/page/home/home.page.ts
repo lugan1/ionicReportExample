@@ -58,7 +58,7 @@ export class HomePage {
     this.authService.Get_Logout()
       .subscribe(
         data=>{
-          console.log("data : "+data);
+
         }
       )
   }

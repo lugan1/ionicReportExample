@@ -1,22 +1,24 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/.."></ion-back-button>
+      <ion-back-button (click)="back_click()"></ion-back-button>
     </ion-buttons>
     <ion-title>boardModify</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <section >
+  <section [formGroup]="fg_board">
     <ion-card class="card_header">
-      <ion-input></ion-input>
+      <ion-input [formControl]="fg_board.controls['title']"></ion-input>
     </ion-card>
 
     <ion-card class="card_content">
-      <ion-textarea></ion-textarea>
+      <ion-textarea [formControl]="fg_board.controls['content']"></ion-textarea>
     </ion-card>
 
-    <ion-button expand="block">제출하기</ion-button>
+    <ion-button expand="block" (click)="open_modifyAlert()">제출하기</ion-button>
   </section>
+
+
 </ion-content>

@@ -29,10 +29,10 @@ export class BoardCreatePage implements OnInit {
       buttons: [
         {text: '아니오'},
         {text:'예', handler: ()=>{
-          console.log("title "+this.fg_board.controls['title'].value+" content : "+this.fg_board.controls['content'].value)
+
           this.boardService.create_Board(this.fg_board.controls['title'].value, this.fg_board.controls['content'].value)
             .subscribe(data=>{
-              console.log("data : "+data);
+
               this.router.navigate(['/board-list'])
             })
           }}

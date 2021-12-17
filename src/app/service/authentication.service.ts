@@ -14,8 +14,6 @@ export class AuthenticationService {
 
   Post_Login(id:string, password:string):Observable<any>{
 
-    console.log('id : '+id+' pw : '+password)
-
     let requst_Login:Request_Login = {
       id:id,
       password:password

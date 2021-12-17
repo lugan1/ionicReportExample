@@ -27,6 +27,10 @@ export class BoardService {
     return this.httpClient.get<Board>('http://localhost:8087/api/back/board/getPostHit',{params:{idx:idx}})
   }
 
+  public get_board_noHit(idx:number):Observable<Board>{
+    return this.httpClient.get<Board>('http://localhost:8087/api/back/board/getPost',{params:{idx:idx}})
+  }
+
   public create_Board(title:string, content:string):Observable<number>{
     let req_board = {
       title:title,
@@ -39,4 +43,15 @@ export class BoardService {
     let params = 'idx='+idx
     return this.httpClient.post<number>('http://localhost:8087/api/back/board/deletePost?'+params,'')
   }
+
+  public modify_Board(idx:number, title:string, content:string):Observable<number>{
+    let req_modify ={
+      idx:idx,
+      title:title,
+      content:content
+    };
+
+    return this.httpClient.post<number>('http://localhost:8087/api/back/board/updatePost',req_modify)
+  }
+
 }

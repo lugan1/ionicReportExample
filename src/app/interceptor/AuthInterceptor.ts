@@ -20,8 +20,6 @@ export class AuthInterceptor implements HttpInterceptor{
     const token = this.token.getToken();
     // SessionStorage에 들어있는 Token 을 가져온다.
 
-    console.log("token : "+token)
-
     if (token != null) {
       authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token) });
     }

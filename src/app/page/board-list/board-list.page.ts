@@ -24,7 +24,7 @@ export class BoardListPage implements OnInit {
 
     this.boardService.get_BoardList(0,10).subscribe(
       data=>{
-        console.log(data)
+
         this.boardListHeader = data;
         this.boardList = data.items;
       }

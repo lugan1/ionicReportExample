@@ -35,7 +35,7 @@ export class BoardDetailPage implements OnInit {
   }
 
   move_modify(){
-    console.log("idx : "+this.idx)
+
     this.router.navigate(['board-modify',this.idx])
   }
 
