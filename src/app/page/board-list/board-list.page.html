@@ -1,9 +1,53 @@
 <ion-header>
+
   <ion-toolbar>
-    <ion-title>boardList</ion-title>
+    <ion-buttons slot="secondary">
+      <ion-button>
+        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="primary">
+      <ion-button color="secondary">
+        <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Board List</ion-title>
   </ion-toolbar>
+
 </ion-header>
 
 <ion-content>
+
+  <ion-list>
+    <ion-item *ngFor="let board of boardList" [routerLink]="['/board-detail',board.idx]">
+      <ion-label>
+        <ion-text>
+          <h2>{{board.title}}</h2>
+        </ion-text>
+        <ion-text color="medium">
+          <p>{{board.writer}}, {{board.writeDate}}</p>
+        </ion-text>
+
+      </ion-label>
+      <ion-text>hit ({{board.hit}}) </ion-text>
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="loadBottomData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+
+  <!-- fab placed to the top end -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['/board-create']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 
 </ion-content>

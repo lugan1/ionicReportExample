@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/board-list"></ion-back-button>
+    </ion-buttons>
+    <ion-title>boardCreate</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <section [formGroup]="fg_board">
+    <ion-card class="card_header">
+      <ion-input placeholder="제목을 작성해주세요" [formControl]="fg_board.controls['title']" ></ion-input>
+    </ion-card>
+
+    <ion-card class="card_content">
+      <ion-textarea placeholder="내용을 작성해주세요" [formControl]="fg_board.controls['content']"></ion-textarea>
+    </ion-card>
+
+    <ion-button expand="block" (click)="open_submitAlert()">제출하기</ion-button>
+  </section>
+
+</ion-content>

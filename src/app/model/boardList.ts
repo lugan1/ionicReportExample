@@ -8,5 +8,5 @@ export class BoardList {
   offset : number;
   limit : number;
   total : number;
-  board : Board[]
+  items : Board[]
 }

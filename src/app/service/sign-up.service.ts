@@ -21,13 +21,13 @@ export class SignUpService {
   }
 
   public Get_existsId(id:string):Observable<any>{
-    let params = new HttpParams().set("id", id);
+    let params = new HttpParams().append("id", id);
 
     return this.httpClient.get<any>('http://localhost:8087/api/back/user/existsId', {params:params});
   }
 
   public Get_existsName(name:string):Observable<any>{
-    let params = new HttpParams().set("name", name);
+    let params = new HttpParams().append("name", name);
 
     return this.httpClient.get<any>('http://localhost:8087/api/back/user/existsName', {params:params});
   }
