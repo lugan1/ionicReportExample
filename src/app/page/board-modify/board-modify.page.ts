@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {BoardService} from "../../service/board.service";
+import {NavController} from "@ionic/angular";
 
 @Component({
   selector: 'app-board-modify',
@@ -8,18 +8,13 @@ import {BoardService} from "../../service/board.service";
 })
 export class BoardModifyPage implements OnInit {
 
-  idx :number;
-
-  constructor(private boardService:BoardService, private activatedRoute) {
-/*    this.idx = activatedRoute.snapshot.params['idx']*/
-  }
+  constructor(private navController:NavController) { }
 
   ngOnInit() {
-/*    this.boardService.get_Board(this.idx).subscribe(
-      data=>{
-        console.log("data : "+data)
-      }
-    )*/
+  }
+
+  back_click(){
+    this.navController.pop()
   }
 
 }

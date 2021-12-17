@@ -18,7 +18,7 @@ const routes: Routes = [
     loadChildren: () => import('./page/board-create/board-create.module').then( m => m.BoardCreatePageModule)
   },
   {
-    path: 'board-modify/:idxs',
+    path: 'board-modify/:idx',
     loadChildren: () => import('./page/board-modify/board-modify.module').then( m => m.BoardModifyPageModule)
   }
 ];
