@@ -34,12 +34,14 @@
       </ion-row>
     </ion-grid>
 
-    <section id="section_loginbtn">
-    <ion-button id="btn_login" expand="block" (click)="submit_login()">Login</ion-button>
-  </section>
+    <section id="button_container">
+      <section id="section_loginbtn">
+        <ion-button id="btn_login" expand="block" (click)="submit_login()">Login</ion-button>
+      </section>
 
-    <section id="section_signupbtn">
-      <ion-button id="btn_signup" expand="block"  [routerLink]="['/sign-up']">SignUp</ion-button>
+      <section id="section_signupbtn">
+        <ion-button id="btn_signup" expand="block"  [routerLink]="['/sign-up']">SignUp</ion-button>
+      </section>
     </section>
   </div>
 

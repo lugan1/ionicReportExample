@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthInterceptor} from "./interceptor/AuthInterceptor";
 import {ReactiveFormsModule} from "@angular/forms";
+import {ErrorInterceptor} from "./interceptor/error-Interceptor";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,22 @@ import {ReactiveFormsModule} from "@angular/forms";
   ],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, ReactiveFormsModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
+  providers: [
+    {
+      provide: RouteReuseStrategy,
+      useClass: IonicRouteStrategy
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true
+    }
+    ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

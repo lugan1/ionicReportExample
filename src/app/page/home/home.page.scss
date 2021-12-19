@@ -33,6 +33,10 @@
   border-color: gray;
 }
 
+.has-focus.sc-ion-input-md-h{
+  border-color: dodgerblue;
+}
+
 
 #form_id{
   margin-top: 30px;
@@ -77,4 +81,8 @@
   font-size: 40px;
   font-family: -webkit-pictograph;
   font-weight: bolder;
+}
+
+#button_container{
+  margin-top: 15%;
 }

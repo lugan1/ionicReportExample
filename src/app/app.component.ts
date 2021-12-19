@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {TokenStorageService} from "./service/token-storage-service";
+import {IonRouterOutlet, Platform, ToastController} from "@ionic/angular";
+import {RouterOutlet} from "@angular/router";
+import {App} from "@capacitor/app";
 
 @Component({
   selector: 'app-root',
@@ -9,11 +12,16 @@ import {TokenStorageService} from "./service/token-storage-service";
 export class AppComponent implements OnInit{
   private roles: string[] = [];
   isLoggedIn = false;
-  showAdminBoard = false;
-  showModeratorBoard = false;
   username?: string;
 
-  constructor(private tokenStorageService: TokenStorageService) {}
+  constructor(private tokenStorageService: TokenStorageService, public toastController:ToastController, private platform: Platform, private routerOutlet:IonRouterOutlet) {
+    this.platform.backButton.subscribeWithPriority(-1, ()=>{
+      console.log("백버튼 클릭");
+      if (!this.routerOutlet.canGoBack()) {
+        App.exitApp();
+      }
+    })
+  }
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
@@ -22,8 +30,6 @@ export class AppComponent implements OnInit{
       const user = this.tokenStorageService.getUser();
       this.roles = user.roles;
 
-      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
 
       this.username = user.username;
     }
@@ -33,4 +39,14 @@ export class AppComponent implements OnInit{
     this.tokenStorageService.logout();
     window.location.reload();
   }
+
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: '뒤로 버튼을 한번 더 누르시면 종료 됩니다.',
+      duration: 2000
+    });
+    toast.present();
+  }
+
 }

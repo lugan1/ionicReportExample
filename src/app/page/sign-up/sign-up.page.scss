@@ -16,8 +16,10 @@
 }
 
 #btn_signUp_submit{
-  margin-left: 35%;
-  margin-top: 5%;
+  width: 80%;
+  height: 40px;
+  margin-left: 8%;
+  margin-top: 15%;
 }
 
 .input_error{
@@ -30,4 +32,8 @@
 
 .txt_error_container{
   height: 21px;
+}
+
+ion-card{
+  height: 83%;
 }
