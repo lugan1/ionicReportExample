@@ -10,7 +10,6 @@ import {
 } from "@angular/forms";
 import {SignUpService} from "../../service/sign-up.service";
 import {NavController} from "@ionic/angular";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-sign-up',
@@ -103,7 +102,6 @@ export class SignUpPage implements OnInit {
             .subscribe(data=>{
               if(data == 1){
                 this.open_SignUpSuccess('가입완료','축하합니다. 가입이 완료되었습니다.')
-                // ionic NavController.pop() : 현재의 뷰를 스택에서 제거한다.
               }
             })}
         }
@@ -129,6 +127,7 @@ export class SignUpPage implements OnInit {
       message:content,
       buttons: [{text: '확인', handler:()=>{
         this.nvCtrl.pop();
+          // ionic NavController.pop() : 현재의 뷰를 스택에서 제거한다.
         }}]
     });
     await alert.present();

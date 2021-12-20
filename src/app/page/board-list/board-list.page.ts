@@ -16,7 +16,7 @@ export class BoardListPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
   boardListHeader : BoardList;
-  boardList : Board[]
+  boardList : Board[];
 
   page_offset : number = 0;
   page_limit : number = 10;
@@ -53,7 +53,6 @@ export class BoardListPage implements OnInit {
   ionViewWillEnter(){
     this.boardService.get_BoardList(0,10).subscribe(
       data=>{
-
         this.boardListHeader = data;
         this.boardList = data.items;
       }
@@ -61,29 +60,27 @@ export class BoardListPage implements OnInit {
   }
 
   move_boardDetail(idx:number){
-    let board = this.boardService.get_Board(idx)
+    let board = this.boardService.get_Board(idx);
   }
 
   loadBottomData(event) {
     setTimeout(() => {
 
       this.page_offset = this.page_limit;
-      this.page_limit = this.page_limit+10;
+      this.page_limit += 10;
 
       this.boardService.get_BoardList(this.page_offset, this.page_limit).subscribe(
         data=>{
           this.boardListHeader = data;
+
           for (let item of data.items) {
-            this.boardList.push(item)
+            this.boardList.push(item);
           }
         }
       );
 
-
       event.target.complete();
 
-      // App logic to determine if all data is loaded
-      // and disable the infinite scroll
       if (this.boardList.length == 20) {
         event.target.disabled = true;
       }

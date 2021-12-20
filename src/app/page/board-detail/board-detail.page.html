@@ -17,8 +17,6 @@
         <ion-card-subtitle>
           <span>{{board?.writer}} | {{board?.writeDate}} | 조회{{board?.hit}}</span>
         </ion-card-subtitle>
-        <ion-card-subtitle>
-        </ion-card-subtitle>
       </ion-card-header>
     </ion-card>
 
@@ -28,7 +26,6 @@
         {{board?.content}}
       </ion-card-content>
     </ion-card>
-
 
     <ion-fab *ngIf="board.delete_enabled || board.modify_enabled" horizontal="end" vertical="bottom" slot="fixed">
       <ion-fab-button>
@@ -43,7 +40,6 @@
         </ion-fab-button>
       </ion-fab-list>
     </ion-fab>
-
   </section>
 
 </ion-content>

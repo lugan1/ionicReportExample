@@ -11,13 +11,12 @@ const TOKEN_HEADER_KEY = 'Authorization';       // for Spring Boot back-end
   providedIn: 'root'
 })
 export class AuthInterceptor implements HttpInterceptor{
-  constructor(private token: TokenStorageService) {
+  constructor(private tokenService: TokenStorageService) {
   }
-
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let authReq = req;
-    const token = this.token.getToken();
+    const token = this.tokenService.getToken();
     // SessionStorage에 들어있는 Token 을 가져온다.
 
     if (token != null) {

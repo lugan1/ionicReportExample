@@ -22,11 +22,8 @@ export class BoardDetailPage implements OnInit {
               private router:Router) {
 
     this.idx = this.activatedRoute.snapshot.params["idx"]
-
     this.board = new Board();
-
     this.observable_board = this.boardService.get_Board(this.idx)
-
   }
 
   ngOnInit() {
@@ -42,24 +39,8 @@ export class BoardDetailPage implements OnInit {
     console.log("ionViewWillEnter()")
   }
 
-  ionViewDidEnter(){
-    //페이지 전환이 모두 완료된 후 이벤트 발생한다.
-    console.log("ionViewDidEnter()")
-  }
-
-  ionViewWillLeave(){
-    //현재 페이지에서 나가기 직전에 이벤트 발생한다.
-    console.log("ionViewWillLeave()")
-  }
-
-  ionViewDidLeave(){
-    //현재 페이지에서 완전히 나간 후 새로운 페이지로 완전히 전환된 후 즉, 새 페이지의 ionViewDidEnter 이후에 이벤트 발생한다.
-    console.log("ionViewDidLeave()")
-  }
-
 
   move_modify(){
-
     this.router.navigate(['board-modify',this.idx])
   }
 

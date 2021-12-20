@@ -33,6 +33,7 @@
 
 
 
+
         <section class="ion-align-items-center">
           <ion-label class="txt_signUp_subject" color="black" position="float">패스워드</ion-label>
           <ion-row>
@@ -77,10 +78,10 @@
 
       </ion-grid>
 
-      <section class="ion-align-items-center">
-        <ion-button [disabled]="fg_signUp.invalid || (id_duplicate_valid == false) || (name_duplicate_valid==false)" id="btn_signUp_submit" (click)="open_submitAlert()">제출하기</ion-button>
-      </section>
-
     </ion-card-content>
   </ion-card>
+  <section class="ion-align-items-center">
+    <ion-button [disabled]="fg_signUp.invalid || (id_duplicate_valid == false) || (name_duplicate_valid==false)" id="btn_signUp_submit" (click)="open_submitAlert()">제출하기</ion-button>
+  </section>
+
 </ion-content>
